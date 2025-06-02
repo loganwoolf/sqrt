@@ -5,15 +5,15 @@
 	"type": "module",
 	"scripts": {
 		"dev": "bunx --bun vite",
-		"build": "tsc -b && vite build",
+		"build": "bunx --bun tsc -b && vite build",
 		"preview": "bunx --bun vite preview",
-		"fix": "bunx --bun biome check --write ./"
+		"fix": "biome check --write ./"
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.1.8",
 		"decimal.js": "^10.5.0",
 		"postcss": "^8.5.4",
-		"preact": "^10.26.5",
+		"preact": "^10.26.8",
 		"tailwindcss": "^4.1.8"
 	},
 	"devDependencies": {
