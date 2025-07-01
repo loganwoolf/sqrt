@@ -1,13 +1,13 @@
 import { type ComponentChildren, createContext } from "preact";
 import { useContext, useReducer } from "preact/hooks";
-import operate from "./lib/operations";
+import operate, { type Operator } from "./lib/operations";
 
 export type Stack = string[];
-type StackAction =
+export type StackAction =
 	| { type: "clear" }
 	| { type: "drop" }
 	| { type: "new"; payload: string }
-	| { type: "operate"; payload: { buffer: string | null; operator: string } }
+	| { type: "operate"; payload: { buffer: string | null; operator: Operator } }
 	| { type: "pick"; payload: number }
 	| { type: "swap"; payload: number };
 

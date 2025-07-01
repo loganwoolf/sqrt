@@ -1,10 +1,12 @@
 import Decimal from "decimal.js";
 import type { Stack } from "../AppContext";
 
+export type Operator = "add" | "subtract" | "multiply" | "divide";
+
 export default function operate({
 	stack,
 	operator,
-}: { stack: Stack; operator: string }): Stack {
+}: { stack: Stack; operator: Operator }): Stack {
 	switch (operator) {
 		case "add": {
 			const [b, a, ...rest] = stack;
