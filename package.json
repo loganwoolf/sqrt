@@ -11,9 +11,11 @@
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.1.8",
+		"clsx": "^2.1.1",
 		"decimal.js": "^10.5.0",
 		"postcss": "^8.5.4",
 		"preact": "^10.26.8",
+		"tailwind-merge": "^3.3.0",
 		"tailwindcss": "^4.1.8"
 	},
 	"devDependencies": {
