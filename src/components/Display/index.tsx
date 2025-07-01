@@ -1,27 +1,22 @@
-import { useState } from "preact/hooks";
 import { useAppContext } from "../../AppContext";
 
-export default function Display() {
-	const { state, dispatch } = useAppContext();
-	const [buffer, setBuffer] = useState("");
+interface DisplayProps {
+	buffer: string | null;
+}
+
+export default function Display({ buffer }: DisplayProps) {
+	const { state } = useAppContext();
 
 	return (
-		<div class="display grid grid-rows-[1fr_auto] w-md h-96 border-2">
-			<div className="stack flex flex-column-reverse leading-none">
-				{state.map((level, index) => (
-					<div class="stack-item" key={`${index}-${level}`}>
-						{level}
+		<div class="display grid grid-rows-[1fr_auto] w-full border-2">
+			<div className="stack bg-cyan-200 flex flex-column-reverse leading-none">
+				{state.slice(0, buffer ? 7 : 8).map((line, index) => (
+					<div class="stack-item" key={`${index}-${line}`}>
+						{line}
 					</div>
 				))}
 			</div>
-			<input
-				type="text"
-				class="bg-amber-50"
-				value={buffer}
-				onChange={(e) => setBuffer(e.currentTarget.value)}
-				onInput={dispatch({ type: "new", payload: buffer })}
-				className="buffer"
-			/>
+			{buffer && <div className="buffer bg-amber-200">{buffer}</div>}
 		</div>
 	);
 }
