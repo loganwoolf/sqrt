@@ -8,7 +8,7 @@
 		"build": "bunx --bun tsc -b && vite build",
 		"preview": "bunx --bun vite preview",
 		"fix": "biome check --write ./",
-		"tsc:watch": "tsc --noEmit --watch --incremental"
+		"watch-types": "tsc --noEmit --watch --incremental --project tsconfig.app.json"
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.1.8",
