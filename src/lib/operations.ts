@@ -6,7 +6,10 @@ export type Operator = "add" | "subtract" | "multiply" | "divide";
 export default function operate({
 	stack,
 	operator,
-}: { stack: Stack; operator: Operator }): Stack {
+}: {
+	stack: Stack;
+	operator: Operator;
+}): Stack {
 	switch (operator) {
 		case "add": {
 			const [b, a, ...rest] = stack;

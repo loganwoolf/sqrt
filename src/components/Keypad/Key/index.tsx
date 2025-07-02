@@ -1,5 +1,5 @@
-import type { ShiftState } from "..";
 import { cn } from "../../../lib/utils";
+import type { ShiftState } from "..";
 
 interface KeyAction {
 	label: string;

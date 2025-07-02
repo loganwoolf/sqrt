@@ -47,7 +47,10 @@ const AppContext = createContext<
 export function AppContextProvider({
 	children,
 	initialState = [],
-}: { children: ComponentChildren; initialState?: Stack }) {
+}: {
+	children: ComponentChildren;
+	initialState?: Stack;
+}) {
 	const [state, dispatch] = useReducer(ActionReducer, initialState);
 
 	return (
