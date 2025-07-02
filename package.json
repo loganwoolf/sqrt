@@ -7,8 +7,8 @@
 		"dev": "bunx --bun vite",
 		"build": "bunx --bun tsc -b && vite build",
 		"preview": "bunx --bun vite preview",
-		"fix": "biome check --write ./",
-		"watch-types": "tsc --noEmit --watch --incremental --project tsconfig.app.json"
+		"fix": "bunx --bun biome check --write ./",
+		"watch-types": "bunx --bun tsc --noEmit --watch --incremental --project tsconfig.app.json"
 	},
 	"dependencies": {
 		"@tailwindcss/postcss": "^4.1.8",
@@ -20,9 +20,9 @@
 		"tailwindcss": "^4.1.8"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
+		"@biomejs/biome": "2.0.6",
 		"@preact/preset-vite": "^2.10.1",
 		"typescript": "~5.8.3",
-		"vite": "^6.3.5"
+		"vite": "^7.0.0"
 	}
 }
