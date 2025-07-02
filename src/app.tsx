@@ -1,7 +1,7 @@
 import "./app.css";
+import { useState } from "preact/hooks";
 import { AppContextProvider } from "./AppContext";
 import Display from "./components/Display";
-import { useState } from "preact/hooks";
 import Keypad from "./components/Keypad";
 
 export type Buffer = string | null;

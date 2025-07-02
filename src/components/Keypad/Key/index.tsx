@@ -29,7 +29,7 @@ interface KeyProps {
 
 export default function Key({ params, shiftActive, buttonType }: KeyProps) {
 	return (
-		<div className={cn('key', params.classes)}>
+		<div className={cn("key", params.classes)}>
 			{params.shift?.label && <span className="">{params.shift.label}</span>}
 			<button
 				type="button"

@@ -1,7 +1,7 @@
-import { useState, type Dispatch, type StateUpdater } from "preact/hooks";
-import Key, { type KeyActions } from "./Key";
+import { type Dispatch, type StateUpdater, useState } from "preact/hooks";
 import { useAppContext } from "../../AppContext";
 import type { Buffer } from "../../app";
+import Key, { type KeyActions } from "./Key";
 
 interface KeypadProps {
 	buffer: Buffer;
@@ -13,7 +13,7 @@ export type ShiftState = boolean;
 export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	const { dispatch } = useAppContext();
 
-	const [shiftActive, setShiftActive] = useState<ShiftState>(false);
+	const [shiftActive] = useState<ShiftState>(false);
 
 	// useEffect(() => {
 	// 	const numberKeys = ["0", ".", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -53,53 +53,77 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		}
 	}
 
-	function handleExponentClick() { 
-		
-	}
+	function handleExponentClick() {}
 
-	function handleClearClick() { 
+	function handleClearClick() {}
 
-	}
+	function handleMultiplyClick() {}
 
-	function handleMultiplyClick() { 
+	function handleDivideClick() {}
 
-	}
+	function handlePlusClick() {}
 
-	function handleDivideClick() { 
-
-	}
-
-	function handlePlusClick() { 
-
-	}
-
-	function handleMinusClick() { 
-
-	}
+	function handleMinusClick() {}
 
 	const numberKeys: KeyActions[] = [
 		{ main: { label: "7", onClick: () => handleNumberClick("7") } },
 		{ main: { label: "8", onClick: () => handleNumberClick("8") } },
 		{ main: { label: "9", onClick: () => handleNumberClick("9") } },
-		{ main: { label: "4", onClick: () => handleNumberClick("4") }, classes: "row-start-2" },
-		{ main: { label: "5", onClick: () => handleNumberClick("5") }, classes: "row-start-2" },
-		{ main: { label: "6", onClick: () => handleNumberClick("6") }, classes: "row-start-2" },
-		{ main: { label: "1", onClick: () => handleNumberClick("1") }, classes: "row-start-3" },
-		{ main: { label: "2", onClick: () => handleNumberClick("2") }, classes: "row-start-3" },
-		{ main: { label: "3", onClick: () => handleNumberClick("3") }, classes: "row-start-3" },
-		{ main: { label: "0", onClick: () => handleNumberClick("0") }, classes: "row-start-4" },
-		{ main: { label: "+/-", onClick: handleNegativeClick }, classes: "row-start-4" },
-		{ main: { label: ".", onClick: handleDecimalClick }, classes: "row-start-4" },
+		{
+			main: { label: "4", onClick: () => handleNumberClick("4") },
+			classes: "row-start-2",
+		},
+		{
+			main: { label: "5", onClick: () => handleNumberClick("5") },
+			classes: "row-start-2",
+		},
+		{
+			main: { label: "6", onClick: () => handleNumberClick("6") },
+			classes: "row-start-2",
+		},
+		{
+			main: { label: "1", onClick: () => handleNumberClick("1") },
+			classes: "row-start-3",
+		},
+		{
+			main: { label: "2", onClick: () => handleNumberClick("2") },
+			classes: "row-start-3",
+		},
+		{
+			main: { label: "3", onClick: () => handleNumberClick("3") },
+			classes: "row-start-3",
+		},
+		{
+			main: { label: "0", onClick: () => handleNumberClick("0") },
+			classes: "row-start-4",
+		},
+		{
+			main: { label: "+/-", onClick: handleNegativeClick },
+			classes: "row-start-4",
+		},
+		{
+			main: { label: ".", onClick: handleDecimalClick },
+			classes: "row-start-4",
+		},
 	];
 
 	const operatorKeys: KeyActions[] = [
 		{ main: { label: "EXP", onClick: handleExponentClick } },
 		{ main: { label: "C", onClick: handleClearClick } },
-		{ main: { label: "x", onClick: handleMultiplyClick }, classes: "row-start-2" },
-		{ main: { label: "/", onClick: handleDivideClick }, classes: "row-start-2" },
+		{
+			main: { label: "x", onClick: handleMultiplyClick },
+			classes: "row-start-2",
+		},
+		{
+			main: { label: "/", onClick: handleDivideClick },
+			classes: "row-start-2",
+		},
 		{ main: { label: "+", onClick: handlePlusClick }, classes: "row-start-3" },
 		{ main: { label: "-", onClick: handleMinusClick }, classes: "row-start-3" },
-		{ main: { label: "enter", onClick: handleEnterClick }, classes: "row-start-4 col-span-2" },
+		{
+			main: { label: "enter", onClick: handleEnterClick },
+			classes: "row-start-4 col-span-2",
+		},
 	];
 
 	return (
