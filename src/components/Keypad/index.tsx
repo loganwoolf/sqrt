@@ -13,7 +13,7 @@ export type ShiftState = boolean;
 export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	const { dispatch } = useAppContext();
 
-	const [shiftActive] = useState<ShiftState>(false);
+	const [shiftActive, setShiftActive] = useState<ShiftState>(false);
 
 	// useEffect(() => {
 	// 	const numberKeys = ["0", ".", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -32,7 +32,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	// }, [buffer, setBuffer, dispatch]);
 
 	function handleNumberClick(number: string) {
-		setBuffer((prev) => (prev ? prev + number : number));
+		return () => setBuffer((prev) => (prev ? prev + number : number));
 	}
 
 	function handleDecimalClick() {
@@ -126,24 +126,41 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 	];
 
+	// const specialKeys: KeyActions[] = [];
+
 	return (
-		<div className="grid grid-cols-5">
-			{numberKeys.map((params) => (
+		<>
+			<div className="grid grid-cols-6">
 				<Key
-					key={params.main.label}
-					params={params}
+					key="shift"
+					params={{
+						main: {
+							label: "Shift",
+							onClick: () => (prev: boolean) => setShiftActive(!prev),
+						},
+					}}
 					shiftActive={shiftActive}
-					buttonType={"number"}
+					buttonType="shift"
 				/>
-			))}
-			{operatorKeys.map((params) => (
-				<Key
-					key={params.main.label}
-					params={params}
-					shiftActive={shiftActive}
-					buttonType={"number"}
-				/>
-			))}
-		</div>
+			</div>
+			<div className="grid grid-cols-5">
+				{numberKeys.map((params) => (
+					<Key
+						key={params.main.label}
+						params={params}
+						shiftActive={shiftActive}
+						buttonType={"number"}
+					/>
+				))}
+				{operatorKeys.map((params) => (
+					<Key
+						key={params.main.label}
+						params={params}
+						shiftActive={shiftActive}
+						buttonType={"number"}
+					/>
+				))}
+			</div>
+		</>
 	);
 }
