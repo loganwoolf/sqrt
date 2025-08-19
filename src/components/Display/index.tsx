@@ -9,7 +9,7 @@ export default function Display({ buffer }: DisplayProps) {
 
 	return (
 		<div class="display grid grid-rows-[1fr_auto] w-full border-2">
-			<div className="stack bg-cyan-200 flex flex-column-reverse leading-none">
+			<div className="stack bg-cyan-200 flex flex-col-reverse font-mono leading-none">
 				{state.slice(0, buffer ? 7 : 8).map((line, index) => (
 					<div class="stack-item" key={`${index}-${line}`}>
 						{line}
