@@ -1,7 +1,12 @@
 import Decimal from "decimal.js";
 import type { Stack } from "../AppContext";
 
-export type Operator = "add" | "subtract" | "multiply" | "divide";
+export type Operator =
+	| "add"
+	| "subtract"
+	| "multiply"
+	| "divide"
+	| "exponentiate";
 
 export default function operate({
 	stack,
@@ -30,6 +35,12 @@ export default function operate({
 			const [b, a, ...rest] = stack;
 			const quotient = new Decimal(a).div(b).toString();
 			return [quotient, ...rest];
+		}
+		case "exponentiate": {
+			const [b, a, ...rest] = stack;
+			const pow = Decimal.pow(10, b);
+			const exp = new Decimal(a).mul(pow).toString();
+			return [exp, ...rest];
 		}
 		default:
 			return stack;
