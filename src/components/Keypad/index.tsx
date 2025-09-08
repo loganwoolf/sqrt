@@ -1,8 +1,8 @@
 import type { Dispatch, StateUpdater } from "preact/hooks";
-import { useAppContext } from "../../AppContext";
 import type { Buffer } from "../../app";
 import Key, { type KeyParams } from "./Key";
 import { ShiftKey } from "./Key/ShiftKey";
+import { useKey } from "./useKey";
 
 interface KeypadProps {
 	buffer: Buffer;
@@ -10,58 +10,18 @@ interface KeypadProps {
 }
 
 export default function Keypad({ buffer, setBuffer }: KeypadProps) {
-	const { dispatch } = useAppContext();
-
-	// useEffect(() => {
-	// 	const numberKeys = ["0", ".", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-	// 	const operatorKeys = ["+", "-", "*", "/"];
-
-	// 	window.addEventListener("keydown", (e: KeyboardEvent) => {
-	// 		if (e.key === "Enter") {
-	// 			if (!buffer) return dispatch({ type: "pick", payload: 0 });
-	// 			dispatch({ type: "new", payload: buffer });
-	// 			setBuffer(null);
-	// 		}
-	// 		if (numberKeys.includes(e.key)) {
-	// 			setBuffer((prev) => (prev ? prev + e.key : e.key));
-	// 		}
-	// 	});
-	// }, [buffer, setBuffer, dispatch]);
-
-	function handleNumberClick(number: string) {
-		setBuffer((prev) => (prev ? prev + number : number));
-	}
-
-	function handleDecimalClick() {
-		if (buffer?.includes(".")) return;
-		setBuffer((prev) => (prev === null ? "0." : `${prev}.`));
-	}
-
-	function handleNegativeClick() {
-		setBuffer((prev) =>
-			prev?.startsWith("-") ? prev.slice(1) : prev === null ? "-" : `-${prev}`,
-		);
-	}
-
-	function handleEnterClick() {
-		if (buffer?.length) {
-			if (buffer === "-") return dispatch({ type: "new", payload: "-0" });
-			dispatch({ type: "new", payload: buffer });
-			setBuffer(null);
-		}
-	}
-
-	function handleExponentClick() {}
-
-	function handleClearClick() {}
-
-	function handleMultiplyClick() {}
-
-	function handleDivideClick() {}
-
-	function handlePlusClick() {}
-
-	function handleMinusClick() {}
+	const {
+		handleNumberClick,
+		handleDecimalClick,
+		handleNegativeClick,
+		handleEnterClick,
+		handleExponentClick,
+		handleClearClick,
+		handleMultiplyClick,
+		handleDivideClick,
+		handlePlusClick,
+		handleMinusClick,
+	} = useKey({ buffer, setBuffer });
 
 	const numberKeys: KeyParams[] = [
 		{
