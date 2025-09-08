@@ -1,19 +1,16 @@
-import { type Dispatch, type StateUpdater, useState } from "preact/hooks";
+import type { Dispatch, StateUpdater } from "preact/hooks";
 import { useAppContext } from "../../AppContext";
 import type { Buffer } from "../../app";
-import Key, { type KeyActions } from "./Key";
+import Key, { type KeyParams } from "./Key";
+import { ShiftKey } from "./Key/ShiftKey";
 
 interface KeypadProps {
 	buffer: Buffer;
 	setBuffer: Dispatch<StateUpdater<Buffer>>;
 }
 
-export type ShiftState = boolean;
-
 export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	const { dispatch } = useAppContext();
-
-	const [shiftActive, setShiftActive] = useState<ShiftState>(false);
 
 	// useEffect(() => {
 	// 	const numberKeys = ["0", ".", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
@@ -32,7 +29,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	// }, [buffer, setBuffer, dispatch]);
 
 	function handleNumberClick(number: string) {
-		return () => setBuffer((prev) => (prev ? prev + number : number));
+		setBuffer((prev) => (prev ? prev + number : number));
 	}
 
 	function handleDecimalClick() {
@@ -50,6 +47,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		if (buffer?.length) {
 			if (buffer === "-") return dispatch({ type: "new", payload: "-0" });
 			dispatch({ type: "new", payload: buffer });
+			setBuffer(null);
 		}
 	}
 
@@ -65,64 +63,79 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 
 	function handleMinusClick() {}
 
-	const numberKeys: KeyActions[] = [
-		{ main: { label: "7", onClick: () => handleNumberClick("7") } },
-		{ main: { label: "8", onClick: () => handleNumberClick("8") } },
-		{ main: { label: "9", onClick: () => handleNumberClick("9") } },
+	const numberKeys: KeyParams[] = [
 		{
-			main: { label: "4", onClick: () => handleNumberClick("4") },
-			classes: "row-start-2",
+			mainAction: { label: "7", onClick: () => handleNumberClick("7") },
 		},
 		{
-			main: { label: "5", onClick: () => handleNumberClick("5") },
-			classes: "row-start-2",
+			mainAction: { label: "8", onClick: () => handleNumberClick("8") },
 		},
 		{
-			main: { label: "6", onClick: () => handleNumberClick("6") },
-			classes: "row-start-2",
+			mainAction: { label: "9", onClick: () => handleNumberClick("9") },
 		},
 		{
-			main: { label: "1", onClick: () => handleNumberClick("1") },
-			classes: "row-start-3",
+			mainAction: {
+				label: "4",
+				onClick: () => handleNumberClick("4"),
+			},
+			className: "row-start-2",
 		},
 		{
-			main: { label: "2", onClick: () => handleNumberClick("2") },
-			classes: "row-start-3",
+			mainAction: { label: "5", onClick: () => handleNumberClick("5") },
+			className: "row-start-2",
 		},
 		{
-			main: { label: "3", onClick: () => handleNumberClick("3") },
-			classes: "row-start-3",
+			mainAction: { label: "6", onClick: () => handleNumberClick("6") },
+			className: "row-start-2",
 		},
 		{
-			main: { label: "0", onClick: () => handleNumberClick("0") },
-			classes: "row-start-4",
+			mainAction: { label: "1", onClick: () => handleNumberClick("1") },
+			className: "row-start-3",
 		},
 		{
-			main: { label: "+/-", onClick: handleNegativeClick },
-			classes: "row-start-4",
+			mainAction: { label: "2", onClick: () => handleNumberClick("2") },
+			className: "row-start-3",
 		},
 		{
-			main: { label: ".", onClick: handleDecimalClick },
-			classes: "row-start-4",
+			mainAction: { label: "3", onClick: () => handleNumberClick("3") },
+			className: "row-start-3",
+		},
+		{
+			mainAction: { label: "0", onClick: () => handleNumberClick("0") },
+			className: "row-start-4",
+		},
+		{
+			mainAction: { label: "+/-", onClick: handleNegativeClick },
+			className: "row-start-4",
+		},
+		{
+			mainAction: { label: ".", onClick: handleDecimalClick },
+			className: "row-start-4",
 		},
 	];
 
-	const operatorKeys: KeyActions[] = [
-		{ main: { label: "EXP", onClick: handleExponentClick } },
-		{ main: { label: "C", onClick: handleClearClick } },
+	const operatorKeys: KeyParams[] = [
+		{ mainAction: { label: "EXP", onClick: handleExponentClick } },
+		{ mainAction: { label: "C", onClick: handleClearClick } },
 		{
-			main: { label: "x", onClick: handleMultiplyClick },
-			classes: "row-start-2",
+			mainAction: { label: "x", onClick: handleMultiplyClick },
+			className: "row-start-2",
 		},
 		{
-			main: { label: "/", onClick: handleDivideClick },
-			classes: "row-start-2",
+			mainAction: { label: "/", onClick: handleDivideClick },
+			className: "row-start-2",
 		},
-		{ main: { label: "+", onClick: handlePlusClick }, classes: "row-start-3" },
-		{ main: { label: "-", onClick: handleMinusClick }, classes: "row-start-3" },
 		{
-			main: { label: "enter", onClick: handleEnterClick },
-			classes: "row-start-4 col-span-2",
+			mainAction: { label: "+", onClick: handlePlusClick },
+			className: "row-start-3",
+		},
+		{
+			mainAction: { label: "-", onClick: handleMinusClick },
+			className: "row-start-3",
+		},
+		{
+			mainAction: { label: "enter", onClick: handleEnterClick },
+			className: "row-start-4 col-span-2",
 		},
 	];
 
@@ -130,33 +143,21 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 
 	return (
 		<>
-			<div className="grid grid-cols-6">
-				<Key
-					key="shift"
-					params={{
-						main: {
-							label: "Shift",
-							onClick: () => (prev: boolean) => setShiftActive(!prev),
-						},
-					}}
-					shiftActive={shiftActive}
-					buttonType="shift"
-				/>
+			<div className="grid grid-cols-6 gap-1 mb-1">
+				<ShiftKey />
 			</div>
-			<div className="grid grid-cols-5">
+			<div className="grid grid-cols-5 gap-1">
 				{numberKeys.map((params) => (
 					<Key
-						key={params.main.label}
-						params={params}
-						shiftActive={shiftActive}
+						key={params.mainAction.label}
+						{...params}
 						buttonType={"number"}
 					/>
 				))}
 				{operatorKeys.map((params) => (
 					<Key
-						key={params.main.label}
-						params={params}
-						shiftActive={shiftActive}
+						key={params.mainAction.label}
+						{...params}
 						buttonType={"number"}
 					/>
 				))}

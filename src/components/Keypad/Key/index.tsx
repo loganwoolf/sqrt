@@ -6,12 +6,6 @@ interface KeyAction {
 	onClick: () => void;
 }
 
-export interface KeyActions {
-	main: KeyAction;
-	shift?: KeyAction;
-	classes?: string;
-}
-
 type ButtonType =
 	| "clear"
 	| "memory"
@@ -21,25 +15,39 @@ type ButtonType =
 	| "stack"
 	| "wide";
 
-interface KeyProps {
-	params: KeyActions;
-	shiftActive: ShiftState;
+export interface KeyParams {
+	mainAction: KeyAction;
+	shiftAction?: KeyAction;
+	className?: string;
+	buttonType?: ButtonType | ButtonType[];
+}
+
+interface KeyProps extends KeyParams {
 	buttonType: ButtonType | ButtonType[];
 }
 
+export default function Key({
+	mainAction,
+	shiftAction,
+	buttonType,
+	className,
+}: KeyProps) {
 	const { shiftActive } = useShiftContext();
+
 	return (
-		<div className={cn("key", params.classes)}>
-			{params.shift?.label && <span className="">{params.shift.label}</span>}
+		<div className={cn("key", className)}>
+			{shiftAction?.label && <span className="">{shiftAction.label}</span>}
 			<button
 				type="button"
 				className={cn(
-					"p-2 w-full",
+					"p-2 w-full border-2 hover:bg-gray-200",
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
-				onClick={!shiftActive ? params.main.onClick : params.shift?.onClick}
+				onClick={
+					shiftActive && shiftAction ? shiftAction.onClick : mainAction.onClick
+				}
 			>
-				{params.main.label}
+				{mainAction.label}
 			</button>
 		</div>
 	);
