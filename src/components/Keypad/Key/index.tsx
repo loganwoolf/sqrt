@@ -1,5 +1,5 @@
 import { cn } from "../../../lib/utils";
-import type { ShiftState } from "..";
+import { useShiftContext } from "../../../ShiftContext";
 
 interface KeyAction {
 	label: string;
@@ -27,7 +27,7 @@ interface KeyProps {
 	buttonType: ButtonType | ButtonType[];
 }
 
-export default function Key({ params, shiftActive, buttonType }: KeyProps) {
+	const { shiftActive } = useShiftContext();
 	return (
 		<div className={cn("key", params.classes)}>
 			{params.shift?.label && <span className="">{params.shift.label}</span>}
