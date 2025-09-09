@@ -1,3 +1,4 @@
+import { HOTKEYS, type Hotkey } from "../../../lib/hotkeys";
 import { cn } from "../../../lib/utils";
 import { useShiftContext } from "../../../ShiftContext";
 
@@ -20,7 +21,7 @@ export interface KeyParams {
 	shiftAction?: KeyAction;
 	className?: string;
 	buttonType?: ButtonType | ButtonType[];
-	hotkey: string;
+	hotkey: Hotkey;
 }
 
 interface KeyProps extends KeyParams {
@@ -43,6 +44,15 @@ export default function Key({
 		};
 	}
 
+	function performMainAction(action: () => void): () => void {
+		return () => {
+			action();
+			if (hotkey !== HOTKEYS.SHIFT) {
+				setShiftActive(false);
+			}
+		};
+	}
+
 	return (
 		<div className={cn("key", className)}>
 			{shiftAction?.label && <span className="">{shiftAction.label}</span>}
@@ -55,7 +65,7 @@ export default function Key({
 				onClick={
 					shiftActive && shiftAction
 						? performShiftAction(shiftAction.onClick)
-						: mainAction.onClick
+						: performMainAction(mainAction.onClick)
 				}
 				data-hotkey={hotkey}
 			>

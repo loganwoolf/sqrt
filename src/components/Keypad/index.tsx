@@ -1,6 +1,7 @@
 import type { Dispatch, StateUpdater } from "preact/hooks";
 import { useEffect } from "preact/hooks";
 import type { Buffer } from "../../app";
+import { HOTKEYS } from "../../lib/hotkeys";
 import Key, { type KeyParams } from "./Key";
 import { ShiftKey } from "./Key/ShiftKey";
 import { useKey } from "./useKey";
@@ -49,102 +50,105 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 				label: "x^2",
 				onClick: handleSquareClick,
 			},
-			hotkey: "s",
+			hotkey: HOTKEYS.SQRT,
 		},
 	];
 
 	const numberKeys: KeyParams[] = [
 		{
 			mainAction: { label: "7", onClick: () => handleNumberClick("7") },
-			hotkey: "7",
+			hotkey: HOTKEYS.NUM_7,
 		},
 		{
 			mainAction: { label: "8", onClick: () => handleNumberClick("8") },
-			hotkey: "8",
+			hotkey: HOTKEYS.NUM_8,
 		},
 		{
 			mainAction: { label: "9", onClick: () => handleNumberClick("9") },
-			hotkey: "9",
+			hotkey: HOTKEYS.NUM_9,
 		},
 		{
 			mainAction: {
 				label: "4",
 				onClick: () => handleNumberClick("4"),
 			},
-			hotkey: "4",
+			hotkey: HOTKEYS.NUM_4,
 			className: "row-start-2",
 		},
 		{
 			mainAction: { label: "5", onClick: () => handleNumberClick("5") },
-			hotkey: "5",
+			hotkey: HOTKEYS.NUM_5,
 			className: "row-start-2",
 		},
 		{
 			mainAction: { label: "6", onClick: () => handleNumberClick("6") },
-			hotkey: "6",
+			hotkey: HOTKEYS.NUM_6,
 			className: "row-start-2",
 		},
 		{
 			mainAction: { label: "1", onClick: () => handleNumberClick("1") },
-			hotkey: "1",
+			hotkey: HOTKEYS.NUM_1,
 			className: "row-start-3",
 		},
 		{
 			mainAction: { label: "2", onClick: () => handleNumberClick("2") },
-			hotkey: "2",
+			hotkey: HOTKEYS.NUM_2,
 			className: "row-start-3",
 		},
 		{
 			mainAction: { label: "3", onClick: () => handleNumberClick("3") },
-			hotkey: "3",
+			hotkey: HOTKEYS.NUM_3,
 			className: "row-start-3",
 		},
 		{
 			mainAction: { label: "0", onClick: () => handleNumberClick("0") },
-			hotkey: "0",
+			hotkey: HOTKEYS.NUM_0,
 			className: "row-start-4",
 		},
 		{
 			mainAction: { label: "+/-", onClick: handleNegativeClick },
-			hotkey: "n",
+			hotkey: HOTKEYS.NEGATE,
 			className: "row-start-4",
 		},
 		{
 			mainAction: { label: ".", onClick: handleDecimalClick },
-			hotkey: ".",
+			hotkey: HOTKEYS.DECIMAL,
 			className: "row-start-4",
 		},
 	];
 
 	const operatorKeys: KeyParams[] = [
-		{ mainAction: { label: "EXP", onClick: handleExponentClick }, hotkey: "e" },
+		{
+			mainAction: { label: "EXP", onClick: handleExponentClick },
+			hotkey: HOTKEYS.EXPONENTIATE,
+		},
 		{
 			mainAction: { label: "C", onClick: handleClearClick },
-			hotkey: "Backspace",
+			hotkey: HOTKEYS.BACKSPACE,
 		},
 		{
 			mainAction: { label: "x", onClick: handleMultiplyClick },
-			hotkey: "*",
+			hotkey: HOTKEYS.MULTIPLY,
 			className: "row-start-2",
 		},
 		{
 			mainAction: { label: "/", onClick: handleDivideClick },
-			hotkey: "/",
+			hotkey: HOTKEYS.DIVIDE,
 			className: "row-start-2",
 		},
 		{
 			mainAction: { label: "+", onClick: handlePlusClick },
-			hotkey: "+",
+			hotkey: HOTKEYS.ADD,
 			className: "row-start-3",
 		},
 		{
 			mainAction: { label: "-", onClick: handleMinusClick },
-			hotkey: "-",
+			hotkey: HOTKEYS.SUBTRACT,
 			className: "row-start-3",
 		},
 		{
 			mainAction: { label: "enter", onClick: handleEnterClick },
-			hotkey: "Enter",
+			hotkey: HOTKEYS.ENTER,
 			className: "row-start-4 col-span-2",
 		},
 	];
