@@ -52,6 +52,10 @@ export function useKey({
 		operate("exponentiate");
 	}
 
+	function handleSqrtClick() {
+		operate("sqrt");
+	}
+
 	function handleClearClick() {
 		if (buffer) {
 			return setBuffer((prev) =>
@@ -90,6 +94,7 @@ export function useKey({
 		handleNegativeClick,
 		handleEnterClick,
 		handleExponentClick,
+		handleSqrtClick,
 		handleClearClick,
 		handleMultiplyClick,
 		handleDivideClick,

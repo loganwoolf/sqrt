@@ -16,12 +16,22 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		handleNegativeClick,
 		handleEnterClick,
 		handleExponentClick,
+		handleSqrtClick,
 		handleClearClick,
 		handleMultiplyClick,
 		handleDivideClick,
 		handlePlusClick,
 		handleMinusClick,
 	} = useKey({ buffer, setBuffer });
+
+	const specialKeys: KeyParams[] = [
+		{
+			mainAction: {
+				label: "sqrt",
+				onClick: handleSqrtClick,
+			},
+		},
+	];
 
 	const numberKeys: KeyParams[] = [
 		{
@@ -105,6 +115,9 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		<>
 			<div className="grid grid-cols-6 gap-1 mb-1">
 				<ShiftKey />
+				{specialKeys.map((params) => (
+					<Key key={params.mainAction.label} {...params} buttonType={"small"} />
+				))}
 			</div>
 			<div className="grid grid-cols-5 gap-1">
 				{numberKeys.map((params) => (

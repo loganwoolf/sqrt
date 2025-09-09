@@ -6,7 +6,8 @@ export type Operator =
 	| "subtract"
 	| "multiply"
 	| "divide"
-	| "exponentiate";
+	| "exponentiate"
+	| "sqrt";
 
 export default function operate({
 	stack,
@@ -41,6 +42,11 @@ export default function operate({
 			const pow = Decimal.pow(10, b);
 			const exp = new Decimal(a).mul(pow).toString();
 			return [exp, ...rest];
+		}
+		case "sqrt": {
+			const [a, ...rest] = stack;
+			const sqrt = new Decimal(a).sqrt().toString();
+			return [sqrt, ...rest];
 		}
 		default:
 			return stack;
