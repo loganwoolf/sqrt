@@ -18,6 +18,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		handleEnterClick,
 		handleExponentClick,
 		handleSqrtClick,
+		handleSquareClick,
 		handleClearClick,
 		handleMultiplyClick,
 		handleDivideClick,
@@ -43,6 +44,10 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 			mainAction: {
 				label: "sqrt",
 				onClick: handleSqrtClick,
+			},
+			shiftAction: {
+				label: "x^2",
+				onClick: handleSquareClick,
 			},
 			hotkey: "s",
 		},
