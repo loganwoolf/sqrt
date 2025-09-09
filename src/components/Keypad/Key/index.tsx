@@ -20,6 +20,7 @@ export interface KeyParams {
 	shiftAction?: KeyAction;
 	className?: string;
 	buttonType?: ButtonType | ButtonType[];
+	hotkey: string;
 }
 
 interface KeyProps extends KeyParams {
@@ -31,8 +32,16 @@ export default function Key({
 	shiftAction,
 	buttonType,
 	className,
+	hotkey,
 }: KeyProps) {
-	const { shiftActive } = useShiftContext();
+	const { shiftActive, setShiftActive } = useShiftContext();
+
+	function performShiftAction(action: () => void): () => void {
+		return () => {
+			action();
+			setShiftActive(false);
+		};
+	}
 
 	return (
 		<div className={cn("key", className)}>
@@ -44,8 +53,11 @@ export default function Key({
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
 				onClick={
-					shiftActive && shiftAction ? shiftAction.onClick : mainAction.onClick
+					shiftActive && shiftAction
+						? performShiftAction(shiftAction.onClick)
+						: mainAction.onClick
 				}
+				data-hotkey={hotkey}
 			>
 				{mainAction.label}
 			</button>
