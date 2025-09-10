@@ -8,6 +8,7 @@
 		"build": "bunx --bun tsc -b && vite build",
 		"preview": "bunx --bun vite preview",
 		"fix": "bunx --bun biome check --write ./",
+		"fix:unsafe": "bunx --bun biome check --write --unsafe ./",
 		"watch-types": "bunx --bun tsc --noEmit --watch --incremental --project tsconfig.app.json",
 		"storybook": "storybook dev -p 6006",
 		"build-storybook": "storybook build"
