@@ -180,7 +180,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 
 	return (
 		<>
-			<div className="grid grid-cols-6 gap-1 mb-1">
+			<div className="mb-1 grid grid-cols-6 gap-1">
 				<ShiftKey />
 				{specialKeys.map((params) => (
 					<Key key={params.mainAction.label} {...params} buttonType={"small"} />

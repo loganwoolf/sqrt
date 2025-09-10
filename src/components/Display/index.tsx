@@ -8,8 +8,8 @@ export default function Display({ buffer }: DisplayProps) {
 	const { state } = useAppContext();
 
 	return (
-		<div class="display grid grid-rows-[1fr_auto] w-full border-2 h-[9lh] mb-2 font-mono text-right">
-			<div className="stack bg-cyan-200 flex flex-col-reverse overflow-auto">
+		<div class="display mb-2 grid w-full grid-rows-[1fr_auto] border-2 text-right font-mono">
+			<div className="stack flex flex-col-reverse overflow-auto bg-cyan-200">
 				{state.map((line, index) => (
 					<div
 						className="grid grid-cols-[2rem_1fr] pr-2"
@@ -21,7 +21,7 @@ export default function Display({ buffer }: DisplayProps) {
 				))}
 			</div>
 			{buffer && (
-				<div className="buffer grid grid-cols-[2rem_1fr] pr-2 bg-amber-200">
+				<div className="buffer grid grid-cols-[2rem_1fr] bg-amber-200 pr-2">
 					<div>{buffer ? "0:" : null}</div>
 					<div className="buffer-item">{buffer}</div>
 				</div>

@@ -12,7 +12,7 @@ export function App() {
 
 	return (
 		<div className="grid min-h-dvh place-content-center">
-			<div className="w-screen max-w-sm p-4 border-2 border-black">
+			<div className="calculator grid h-dvh max-h-[36rem] w-screen max-w-sm grid-rows-[minmax(0,1fr)_auto_auto] border-2 border-black p-4">
 				<AppContextProvider>
 					<Display buffer={buffer} />
 					<ShiftContextProvider>

@@ -59,7 +59,7 @@ export default function Key({
 			<button
 				type="button"
 				className={cn(
-					"p-2 w-full border-2 hover:bg-gray-200 row-start-2",
+					"row-start-2 w-full border-2 p-2 hover:bg-gray-200",
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
 				onClick={
