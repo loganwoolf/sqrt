@@ -9,18 +9,21 @@ export default function Display({ buffer }: DisplayProps) {
 
 	return (
 		<div class="display grid grid-rows-[1fr_auto] w-full border-2 h-[9lh] mb-2 font-mono text-right">
-			<div className="stack bg-cyan-200 flex flex-col-reverse">
-				{state.slice(0, buffer ? 7 : 8).map((line, index) => (
-					<div className="grid grid-cols-[1fr_2rem]" key={`${index}-${line}`}>
+			<div className="stack bg-cyan-200 flex flex-col-reverse overflow-auto">
+				{state.map((line, index) => (
+					<div
+						className="grid grid-cols-[2rem_1fr] pr-2"
+						key={`${index}-${line}`}
+					>
+						<div className="">{buffer ? index + 1 : index}:</div>
 						<div class="stack-item">{line}</div>
-						<div className="">:{buffer ? index + 1 : index}</div>
 					</div>
 				))}
 			</div>
 			{buffer && (
-				<div className="grid grid-cols-[1fr_2rem] bg-amber-200">
-					<div className="buffer">{buffer}</div>
-					<div>{buffer ? ":0" : null}</div>
+				<div className="buffer grid grid-cols-[2rem_1fr] pr-2 bg-amber-200">
+					<div>{buffer ? "0:" : null}</div>
+					<div className="buffer-item">{buffer}</div>
 				</div>
 			)}
 		</div>
