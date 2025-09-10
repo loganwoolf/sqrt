@@ -12,20 +12,7 @@ interface KeypadProps {
 }
 
 export default function Keypad({ buffer, setBuffer }: KeypadProps) {
-	const {
-		handleNumberClick,
-		handleDecimalClick,
-		handleNegativeClick,
-		handleEnterClick,
-		handleExponentClick,
-		handleSqrtClick,
-		handleSquareClick,
-		handleClearClick,
-		handleMultiplyClick,
-		handleDivideClick,
-		handlePlusClick,
-		handleMinusClick,
-	} = useKey({ buffer, setBuffer });
+	const handle = useKey({ buffer, setBuffer });
 
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
@@ -44,11 +31,11 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		{
 			mainAction: {
 				label: "sqrt",
-				onClick: handleSqrtClick,
+				onClick: handle.sqrt,
 			},
 			shiftAction: {
 				label: "x^2",
-				onClick: handleSquareClick,
+				onClick: handle.square,
 			},
 			hotkey: HOTKEYS.SQRT,
 		},
@@ -56,62 +43,59 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 
 	const numberKeys: KeyParams[] = [
 		{
-			mainAction: { label: "7", onClick: () => handleNumberClick("7") },
+			mainAction: { label: "7", onClick: () => handle.number("7") },
 			hotkey: HOTKEYS.NUM_7,
 		},
 		{
-			mainAction: { label: "8", onClick: () => handleNumberClick("8") },
+			mainAction: { label: "8", onClick: () => handle.number("8") },
 			hotkey: HOTKEYS.NUM_8,
 		},
 		{
-			mainAction: { label: "9", onClick: () => handleNumberClick("9") },
+			mainAction: { label: "9", onClick: () => handle.number("9") },
 			hotkey: HOTKEYS.NUM_9,
 		},
 		{
-			mainAction: {
-				label: "4",
-				onClick: () => handleNumberClick("4"),
-			},
+			mainAction: { label: "4", onClick: () => handle.number("4") },
 			hotkey: HOTKEYS.NUM_4,
 			className: "row-start-2",
 		},
 		{
-			mainAction: { label: "5", onClick: () => handleNumberClick("5") },
+			mainAction: { label: "5", onClick: () => handle.number("5") },
 			hotkey: HOTKEYS.NUM_5,
 			className: "row-start-2",
 		},
 		{
-			mainAction: { label: "6", onClick: () => handleNumberClick("6") },
+			mainAction: { label: "6", onClick: () => handle.number("6") },
 			hotkey: HOTKEYS.NUM_6,
 			className: "row-start-2",
 		},
 		{
-			mainAction: { label: "1", onClick: () => handleNumberClick("1") },
+			mainAction: { label: "1", onClick: () => handle.number("1") },
 			hotkey: HOTKEYS.NUM_1,
 			className: "row-start-3",
 		},
 		{
-			mainAction: { label: "2", onClick: () => handleNumberClick("2") },
+			mainAction: { label: "2", onClick: () => handle.number("2") },
 			hotkey: HOTKEYS.NUM_2,
 			className: "row-start-3",
 		},
 		{
-			mainAction: { label: "3", onClick: () => handleNumberClick("3") },
+			mainAction: { label: "3", onClick: () => handle.number("3") },
 			hotkey: HOTKEYS.NUM_3,
 			className: "row-start-3",
 		},
 		{
-			mainAction: { label: "0", onClick: () => handleNumberClick("0") },
+			mainAction: { label: "0", onClick: () => handle.number("0") },
 			hotkey: HOTKEYS.NUM_0,
 			className: "row-start-4",
 		},
 		{
-			mainAction: { label: "+/-", onClick: handleNegativeClick },
+			mainAction: { label: "+/-", onClick: handle.negative },
 			hotkey: HOTKEYS.NEGATE,
 			className: "row-start-4",
 		},
 		{
-			mainAction: { label: ".", onClick: handleDecimalClick },
+			mainAction: { label: ".", onClick: handle.decimal },
 			hotkey: HOTKEYS.DECIMAL,
 			className: "row-start-4",
 		},
@@ -119,35 +103,35 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 
 	const operatorKeys: KeyParams[] = [
 		{
-			mainAction: { label: "EXP", onClick: handleExponentClick },
+			mainAction: { label: "EXP", onClick: handle.exponent },
 			hotkey: HOTKEYS.EXPONENTIATE,
 		},
 		{
-			mainAction: { label: "C", onClick: handleClearClick },
+			mainAction: { label: "C", onClick: handle.clear },
 			hotkey: HOTKEYS.BACKSPACE,
 		},
 		{
-			mainAction: { label: "x", onClick: handleMultiplyClick },
+			mainAction: { label: "x", onClick: handle.multiply },
 			hotkey: HOTKEYS.MULTIPLY,
 			className: "row-start-2",
 		},
 		{
-			mainAction: { label: "/", onClick: handleDivideClick },
+			mainAction: { label: "/", onClick: handle.divide },
 			hotkey: HOTKEYS.DIVIDE,
 			className: "row-start-2",
 		},
 		{
-			mainAction: { label: "+", onClick: handlePlusClick },
+			mainAction: { label: "+", onClick: handle.plus },
 			hotkey: HOTKEYS.ADD,
 			className: "row-start-3",
 		},
 		{
-			mainAction: { label: "-", onClick: handleMinusClick },
+			mainAction: { label: "-", onClick: handle.minus },
 			hotkey: HOTKEYS.SUBTRACT,
 			className: "row-start-3",
 		},
 		{
-			mainAction: { label: "enter", onClick: handleEnterClick },
+			mainAction: { label: "enter", onClick: handle.enter },
 			hotkey: HOTKEYS.ENTER,
 			className: "row-start-4 col-span-2",
 		},
