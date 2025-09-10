@@ -54,6 +54,12 @@ export function useKey({
 		exponent: () => operate("exponentiate"),
 		sqrt: () => operate("sqrt"),
 		square: () => operate("square"),
+		sin: () => operate("sin"),
+		cos: () => operate("cos"),
+		tan: () => operate("tan"),
+		asin: () => operate("asin"),
+		acos: () => operate("acos"),
+		atan: () => operate("atan"),
 		clear: () => {
 			if (buffer)
 				return setBuffer((prev) =>

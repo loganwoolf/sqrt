@@ -8,7 +8,13 @@ export type Operator =
 	| "divide"
 	| "exponentiate"
 	| "sqrt"
-	| "square";
+	| "square"
+	| "sin"
+	| "cos"
+	| "tan"
+	| "asin"
+	| "acos"
+	| "atan";
 
 export default function operate({
 	stack,
@@ -53,6 +59,42 @@ export default function operate({
 			const [a, ...rest] = stack;
 			const square = new Decimal(a).pow(2).toString();
 			return [square, ...rest];
+		}
+		case "sin": {
+			const [a, ...rest] = stack;
+			const sin = Decimal.sin(
+				new Decimal(a).mul(Decimal.acos(-1)).div(180),
+			).toString();
+			return [sin, ...rest];
+		}
+		case "cos": {
+			const [a, ...rest] = stack;
+			const cos = Decimal.cos(
+				new Decimal(a).mul(Decimal.acos(-1)).div(180),
+			).toString();
+			return [cos, ...rest];
+		}
+		case "tan": {
+			const [a, ...rest] = stack;
+			const tan = Decimal.tan(
+				new Decimal(a).mul(Decimal.acos(-1)).div(180),
+			).toString();
+			return [tan, ...rest];
+		}
+		case "asin": {
+			const [a, ...rest] = stack;
+			const sin = Decimal(a).asin().mul(180).div(Decimal.acos(-1)).toString();
+			return [sin, ...rest];
+		}
+		case "acos": {
+			const [a, ...rest] = stack;
+			const cos = Decimal(a).acos().mul(180).div(Decimal.acos(-1)).toString();
+			return [cos, ...rest];
+		}
+		case "atan": {
+			const [a, ...rest] = stack;
+			const tan = Decimal(a).atan().mul(180).div(Decimal.acos(-1)).toString();
+			return [tan, ...rest];
 		}
 		default:
 			return stack;

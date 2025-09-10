@@ -39,6 +39,36 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 			},
 			hotkey: HOTKEYS.SQRT,
 		},
+		{
+			mainAction: {
+				label: "sin",
+				onClick: handle.sin,
+			},
+			shiftAction: {
+				label: "asin",
+				onClick: handle.asin,
+			},
+		},
+		{
+			mainAction: {
+				label: "cos",
+				onClick: handle.cos,
+			},
+			shiftAction: {
+				label: "acos",
+				onClick: handle.acos,
+			},
+		},
+		{
+			mainAction: {
+				label: "tan",
+				onClick: handle.tan,
+			},
+			shiftAction: {
+				label: "atan",
+				onClick: handle.atan,
+			},
+		},
 	];
 
 	const numberKeys: KeyParams[] = [
