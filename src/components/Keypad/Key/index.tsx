@@ -54,12 +54,12 @@ export default function Key({
 	}
 
 	return (
-		<div className={cn("key", className)}>
+		<div className={cn("key grid grid-rows-[1lh_auto]", className)}>
 			{shiftAction?.label && <span className="">{shiftAction.label}</span>}
 			<button
 				type="button"
 				className={cn(
-					"p-2 w-full border-2 hover:bg-gray-200",
+					"p-2 w-full border-2 hover:bg-gray-200 row-start-2",
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
 				onClick={
