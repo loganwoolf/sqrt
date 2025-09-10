@@ -41,6 +41,17 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 		{
 			mainAction: {
+				label: "y^x",
+				onClick: handle.npow,
+			},
+			shiftAction: {
+				label: "x rt",
+				onClick: handle.nroot,
+			},
+			hotkey: HOTKEYS.SQRT,
+		},
+		{
+			mainAction: {
 				label: "sin",
 				onClick: handle.sin,
 			},

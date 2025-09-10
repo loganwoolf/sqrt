@@ -9,6 +9,8 @@ export type Operator =
 	| "exponentiate"
 	| "sqrt"
 	| "square"
+	| "nroot"
+	| "npow"
 	| "sin"
 	| "cos"
 	| "tan"
@@ -59,6 +61,16 @@ export default function operate({
 			const [a, ...rest] = stack;
 			const square = new Decimal(a).pow(2).toString();
 			return [square, ...rest];
+		}
+		case "nroot": {
+			const [b, a, ...rest] = stack;
+			const n = new Decimal(a).pow(new Decimal(1).div(b)).toString();
+			return [n, ...rest];
+		}
+		case "npow": {
+			const [b, a, ...rest] = stack;
+			const n = new Decimal(a).pow(b).toString();
+			return [n, ...rest];
 		}
 		case "sin": {
 			const [a, ...rest] = stack;

@@ -54,6 +54,8 @@ export function useKey({
 		exponent: () => operate("exponentiate"),
 		sqrt: () => operate("sqrt"),
 		square: () => operate("square"),
+		nroot: () => operate("nroot"),
+		npow: () => operate("npow"),
 		sin: () => operate("sin"),
 		cos: () => operate("cos"),
 		tan: () => operate("tan"),
