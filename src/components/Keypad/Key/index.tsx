@@ -21,7 +21,7 @@ export interface KeyParams {
 	shiftAction?: KeyAction;
 	className?: string;
 	buttonType?: ButtonType | ButtonType[];
-	hotkey: Hotkey;
+	hotkey?: Hotkey;
 }
 
 interface KeyProps extends KeyParams {
