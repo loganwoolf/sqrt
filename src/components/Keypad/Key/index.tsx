@@ -55,7 +55,7 @@ export default function Key({
 
 	return (
 		<div className={cn("key grid grid-rows-[1lh_auto]", className)}>
-			{shiftAction?.label && <span className="">{shiftAction.label}</span>}
+			{shiftAction?.label && <span className="px-1">{shiftAction.label}</span>}
 			<button
 				type="button"
 				className={cn(
