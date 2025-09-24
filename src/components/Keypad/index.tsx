@@ -122,6 +122,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 		{
 			mainAction: { label: "3", onClick: () => handle.number("3") },
+			shiftAction: { label: "pi", onClick: handle.pi },
 			hotkey: HOTKEYS.NUM_3,
 			className: "row-start-3",
 		},
