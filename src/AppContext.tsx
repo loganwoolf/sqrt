@@ -29,6 +29,7 @@ function ActionReducer(state: Stack, action: StackAction): Stack {
 			return [state[action.payload], ...state];
 		case "swap": {
 			if (action.payload < 1) return state;
+			if (action.payload >= state.length) return state;
 			const selected = state[action.payload];
 			const before = state[action.payload - 1];
 			const dup = [...state];

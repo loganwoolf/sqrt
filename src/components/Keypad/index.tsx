@@ -82,6 +82,12 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 	];
 
+	const stackKeys: KeyParams[] = [
+		{
+			mainAction: { label: "swap", onClick: handle.swap },
+		},
+	];
+
 	const numberKeys: KeyParams[] = [
 		{
 			mainAction: { label: "7", onClick: () => handle.number("7") },
@@ -184,6 +190,9 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 			<div className="mb-1 grid grid-cols-6 gap-1">
 				<ShiftKey />
 				{specialKeys.map((params) => (
+					<Key key={params.mainAction.label} {...params} buttonType={"small"} />
+				))}
+				{stackKeys.map((params) => (
 					<Key key={params.mainAction.label} {...params} buttonType={"small"} />
 				))}
 			</div>

@@ -81,5 +81,13 @@ export function useKey({
 		divide: () => operate("divide"),
 		plus: () => operate("add"),
 		minus: () => operate("subtract"),
+		swap: () => {
+			if (buffer?.length) {
+				dispatch({ type: "new", payload: buffer });
+				setBuffer(null);
+			}
+
+			dispatch({ type: "swap", payload: 1 });
+		},
 	};
 }
