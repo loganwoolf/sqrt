@@ -1,6 +1,7 @@
 import type { Dispatch, StateUpdater } from "preact/hooks";
 import { useAppContext } from "../../AppContext";
 import type { Buffer } from "../../app";
+import { CONSTANTS, type Constant } from "../../lib/constants";
 import type { Operator } from "../../lib/operations";
 
 export function useKey({
@@ -17,9 +18,15 @@ export function useKey({
 		setBuffer(null);
 	}
 
+	function constant(constant: Constant) {
+		dispatch({ type: "new", payload: CONSTANTS[constant].toString() });
+		setBuffer(null);
+	}
+
 	return {
 		number: (number: string) =>
 			setBuffer((prev) => (prev ? prev + number : number)),
+		pi: () => constant("pi"),
 		decimal: () => {
 			if (buffer?.includes(".")) return;
 
