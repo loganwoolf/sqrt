@@ -1,10 +1,9 @@
 import { HOTKEYS } from "../../../lib/hotkeys";
-import { cn } from "../../../lib/utils";
 import { useShiftContext } from "../../../ShiftContext";
 import Key from ".";
 
 export function ShiftKey() {
-	const { shiftActive, setShiftActive } = useShiftContext();
+	const { setShiftActive } = useShiftContext();
 
 	return (
 		<Key
@@ -14,7 +13,6 @@ export function ShiftKey() {
 			}}
 			buttonType={"shift"}
 			hotkey={HOTKEYS.SHIFT}
-			className={cn({ "[&>button]:bg-amber-600": shiftActive })}
 		/>
 	);
 }
