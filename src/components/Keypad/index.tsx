@@ -83,9 +83,9 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	];
 
 	const stackKeys: KeyParams[] = [
-		{
-			mainAction: { label: "swap", onClick: handle.swap },
-		},
+		// {
+		// 	mainAction: { label: "swap", onClick: handle.swap },
+		// },
 	];
 
 	const numberKeys: KeyParams[] = [
