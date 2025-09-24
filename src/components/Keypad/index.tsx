@@ -17,6 +17,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 	useEffect(() => {
 		const handleKeyDown = (event: KeyboardEvent) => {
 			if (event.repeat) return;
+
 			const selector = `button[data-hotkey="${event.key}"]`;
 			const button = document.querySelector(selector);
 			if (!(button instanceof HTMLButtonElement)) return;
@@ -24,7 +25,6 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 			button.click();
 		};
 		window.addEventListener("keydown", handleKeyDown);
-		// return () => window.removeEventListener("keydown", handleKeyDown);
 	}, []);
 
 	const specialKeys: KeyParams[] = [
