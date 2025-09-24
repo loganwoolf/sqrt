@@ -13,20 +13,20 @@ export default function Display({ buffer }: DisplayProps) {
 			<div className="mx-2">
 				<Statusline />
 			</div>
-			<div className="stack flex flex-col-reverse overflow-auto text-right">
+			<div className="stack flex flex-col-reverse overflow-auto text-right [scrollbar-gutter:stable] [scrollbar-width:thin]">
 				{state.map((line, index) => (
 					<div
 						className="grid grid-cols-[2rem_1fr] pr-2"
 						key={`${index}-${line}`}
 					>
-						<div className="">{buffer ? index + 1 : index}:</div>
+						<div className="">{index}:</div>
 						<div class="stack-item">{line}</div>
 					</div>
 				))}
 			</div>
 			{buffer && (
-				<div className="buffer grid grid-cols-[2rem_1fr] bg-amber-200 pr-2 text-right">
-					<div>{buffer ? "0:" : null}</div>
+				<div className="buffer grid grid-cols-[2rem_1fr] overflow-auto bg-amber-200 pr-2 text-right [scrollbar-gutter:stable] [scrollbar-width:thin]">
+					<div>{">>"}</div>
 					<div className="buffer-item">{buffer}</div>
 				</div>
 			)}
