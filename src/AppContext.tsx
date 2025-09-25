@@ -4,54 +4,85 @@ import type { Buffer } from "./app";
 import operate, { type Operator } from "./lib/operations";
 
 export type Stack = string[];
+export type History = Stack[];
+
 export type StackAction =
 	| { type: "clear" }
 	| { type: "drop" }
 	| { type: "new"; payload: string }
+	| { type: "undo" }
 	| { type: "operate"; payload: { buffer: Buffer; operator: Operator } }
 	| { type: "pick"; payload: number }
 	| { type: "swap"; payload: number };
 
-function ActionReducer(state: Stack, action: StackAction): Stack {
+function ActionReducer(state: History, action: StackAction): History {
 	switch (action.type) {
 		case "clear":
-			return [];
-		case "drop":
-			return state.slice(1);
-		case "new":
-			return [action.payload, ...state];
+			return [[], ...state];
+
+		case "drop": {
+			const [stack] = state;
+
+			return [stack.slice(1), ...state];
+		}
+
+		case "new": {
+			const [stack] = state;
+
+			return [[action.payload, ...stack], ...state];
+		}
+
+		case "undo": {
+			const [, ...history] = state;
+
+			return history || state;
+		}
+
 		case "operate": {
 			const { buffer, operator } = action.payload;
-			const stack = buffer ? [buffer, ...state] : state;
-			return operate({ stack, operator });
+			const [currentStack] = state;
+			const settledStack = buffer ? [buffer, ...currentStack] : currentStack;
+			const newStack = operate({ stack: settledStack, operator });
+
+			return [newStack, ...state];
 		}
-		case "pick":
-			return [state[action.payload], ...state];
+
+		case "pick": {
+			const [stack] = state;
+
+			return [[stack[action.payload], ...stack], ...state];
+		}
+
 		case "swap": {
+			const [stack] = state;
+
 			if (action.payload < 1) return state;
-			if (action.payload >= state.length) return state;
-			const selected = state[action.payload];
-			const before = state[action.payload - 1];
-			const dup = [...state];
+			if (action.payload >= stack.length) return state;
+
+			const selected = stack[action.payload];
+			const before = stack[action.payload - 1];
+			const dup = [...stack];
 			dup[action.payload] = before;
 			dup[action.payload - 1] = selected;
-			return dup;
+
+			return [dup, ...state];
 		}
+
 		default:
 			return state;
 	}
 }
 
 const AppContext = createContext<
-	{ state: Stack; dispatch: (action: StackAction) => void } | undefined
+	{ state: History; dispatch: (action: StackAction) => void } | undefined
 >(undefined);
 
 export function AppContextProvider({
 	children,
-	initialState = [],
+	initialState = [[]],
 }: {
 	children: ComponentChildren;
-	initialState?: Stack;
+	initialState?: History;
 }) {
 	const [state, dispatch] = useReducer(ActionReducer, initialState);
 
