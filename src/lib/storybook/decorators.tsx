@@ -1,9 +1,9 @@
 import type { DecoratorFunction } from "storybook/internal/csf";
-import { AppContextProvider, type Stack } from "../../AppContext";
+import { AppContextProvider, type History } from "../../AppContext";
 import { ShiftContextProvider, type ShiftState } from "../../ShiftContext";
 
 export const AppContext: DecoratorFunction = (Story, context) => {
-	const initialStack: Stack = context.args.stack || [];
+	const initialStack: History = context.args.history;
 
 	return (
 		<AppContextProvider initialState={initialStack}>

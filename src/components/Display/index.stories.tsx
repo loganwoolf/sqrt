@@ -6,7 +6,7 @@ const meta = {
 	component: Display,
 	decorators: [ShiftContext, AppContext],
 	args: {
-		stack: ["789", "456", "123"],
+		history: [["789", "456", "123"]],
 		buffer: "437378",
 	},
 } satisfies Meta<typeof Display>;
