@@ -19,7 +19,9 @@ export default function Display({ buffer }: { buffer: Buffer }) {
 						key={`${index}-${line}`}
 					>
 						<div className="">{index}:</div>
-						<div class="stack-item">{line}</div>
+						<div class="stack-item">
+							{new Intl.NumberFormat().format(+line)}
+						</div>
 					</div>
 				))}
 			</div>
