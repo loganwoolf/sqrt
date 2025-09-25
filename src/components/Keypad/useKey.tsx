@@ -93,5 +93,9 @@ export function useKey({
 
 			dispatch({ type: "swap", payload: 1 });
 		},
+		undo: () => {
+			setBuffer(null);
+			dispatch({ type: "undo" });
+		},
 	};
 }

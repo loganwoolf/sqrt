@@ -160,6 +160,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 		{
 			mainAction: { label: "/", onClick: handle.divide },
+			shiftAction: { label: "undo", onClick: handle.undo },
 			hotkey: HOTKEYS.DIVIDE,
 			className: "row-start-2",
 		},
