@@ -156,6 +156,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 		{
 			mainAction: { label: "C", onClick: handle.clear },
+			shiftAction: { label: "AC", onClick: handle.allClear },
 			hotkey: HOTKEYS.BACKSPACE,
 		},
 		{

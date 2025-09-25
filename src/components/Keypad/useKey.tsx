@@ -77,6 +77,10 @@ export function useKey({
 
 			dispatch({ type: "drop" });
 		},
+		allClear: () => {
+			setBuffer(null);
+			dispatch({ type: "clear" });
+		},
 		multiply: () => operate("multiply"),
 		divide: () => operate("divide"),
 		plus: () => operate("add"),
