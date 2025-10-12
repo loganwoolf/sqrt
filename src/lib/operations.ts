@@ -36,6 +36,10 @@ const operations = {
 		const quotient = new Decimal(a).div(b).toString();
 		return [quotient, ...rest];
 	},
+	reciprocate: ([x, ...rest]) => {
+		const reciprocal = new Decimal(1).div(x).toString();
+		return [reciprocal, ...rest];
+	},
 
 	// ROOTS AND POWERS
 	exponentiate: (stack) => {

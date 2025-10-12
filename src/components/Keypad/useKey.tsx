@@ -48,6 +48,7 @@ export function useKey({
 						: `-${prev}`,
 			);
 		},
+		reciprocate: () => operate("reciprocate"),
 		enter: () => {
 			if (buffer?.length) {
 				if (buffer === "-") return dispatch({ type: "new", payload: "-0" });

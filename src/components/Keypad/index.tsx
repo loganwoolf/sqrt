@@ -133,6 +133,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 		},
 		{
 			mainAction: { label: "+/-", onClick: handle.negative },
+			shiftAction: { label: "1/x", onClick: handle.reciprocate },
 			hotkey: HOTKEYS.NEGATE,
 			className: "row-start-4",
 		},
