@@ -37,20 +37,16 @@ export default function Key({
 }: KeyProps) {
 	const { shiftActive, setShiftActive } = useShiftContext();
 
-	function performShiftAction(action: () => void): () => void {
-		return () => {
-			action();
-			setShiftActive(false);
-		};
+	function performShiftAction(action: () => void): void {
+		action();
+		setShiftActive(false);
 	}
 
-	function performMainAction(action: () => void): () => void {
-		return () => {
-			action();
-			if (hotkey !== HOTKEYS.SHIFT) {
-				setShiftActive(false);
-			}
-		};
+	function performMainAction(action: () => void): void {
+		action();
+		if (hotkey !== HOTKEYS.SHIFT) {
+			setShiftActive(false);
+		}
 	}
 
 	return (
@@ -62,12 +58,16 @@ export default function Key({
 					"row-start-2 w-full border-2 p-2 hover:bg-gray-200",
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
-				onClick={
-					shiftActive && shiftAction
-						? performShiftAction(shiftAction.onClick)
-						: performMainAction(mainAction.onClick)
-				}
+				onClick={(event) => {
+					if (shiftActive && shiftAction) {
+						performShiftAction(shiftAction.onClick);
+					} else {
+						performMainAction(mainAction.onClick);
+					}
+					if (event.target instanceof HTMLButtonElement) event.target.blur();
+				}}
 				data-hotkey={hotkey}
+				tabindex={-1}
 			>
 				{mainAction.label}
 			</button>
