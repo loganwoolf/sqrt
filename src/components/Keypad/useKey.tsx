@@ -51,7 +51,7 @@ export function useKey({
 		reciprocate: () => operate("reciprocate"),
 		enter: () => {
 			if (buffer?.length) {
-				if (buffer === "-") return dispatch({ type: "new", payload: "-0" });
+				if (buffer === "-") return setBuffer(null);
 
 				dispatch({ type: "new", payload: buffer });
 				return setBuffer(null);
