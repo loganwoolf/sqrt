@@ -56,6 +56,7 @@ export default function Key({
 				type="button"
 				className={cn(
 					"row-start-2 w-full border-2 p-2 hover:bg-gray-200",
+					"[touch-action:manipulation]",
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
 				onClick={(event) => {
