@@ -56,11 +56,11 @@ operators will work with open buffer. you don't necessarily need to hit `enter` 
 - basic exponent/root functions
 - basic keybinds
 - undo
+- keybind visibility
 
 ### planned
 
 - make it more prettier
-- keybind visibility
 - notation selection (float, fix, sci, eng)
 - angle unit selection (deg, rad, grad, mil)
 - stack manipulation
