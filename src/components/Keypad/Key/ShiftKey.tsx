@@ -8,7 +8,7 @@ export function ShiftKey() {
 	return (
 		<Key
 			mainAction={{
-				label: "Shift",
+				label: "shift",
 				onClick: () => setShiftActive((prev) => !prev),
 			}}
 			buttonType={"shift"}
