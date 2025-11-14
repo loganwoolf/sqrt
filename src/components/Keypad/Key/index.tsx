@@ -1,4 +1,4 @@
-import { HOTKEYS, type Hotkey } from "../../../lib/hotkeys";
+import { HOTKEYS, type Hotkey, hotkeyLabel } from "../../../lib/hotkeys";
 import { cn } from "../../../lib/utils";
 import { useShiftContext } from "../../../ShiftContext";
 
@@ -55,7 +55,7 @@ export default function Key({
 			<button
 				type="button"
 				className={cn(
-					"row-start-2 w-full border-2 p-2 hover:bg-gray-200",
+					"relative row-start-2 w-full border-2 p-2 hover:bg-gray-200",
 					"[touch-action:manipulation]",
 					Array.isArray(buttonType) ? buttonType.join(" ") : buttonType,
 				)}
@@ -71,6 +71,16 @@ export default function Key({
 				tabindex={-1}
 			>
 				{mainAction.label}
+				{hotkey && (
+					<span
+						className={cn(
+							"absolute top-0.5 right-0.75 text-xs leading-none opacity-80",
+							hotkey.toLowerCase() === mainAction.label && "hidden",
+						)}
+					>
+						{hotkeyLabel(hotkey)}
+					</span>
+				)}
 			</button>
 		</div>
 	);

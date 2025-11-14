@@ -30,3 +30,12 @@ export const HOTKEYS = {
 } as const;
 
 export type Hotkey = (typeof HOTKEYS)[keyof typeof HOTKEYS];
+
+export function hotkeyLabel(hotkey: Hotkey): string {
+	switch (hotkey) {
+		case HOTKEYS.BACKSPACE:
+			return "bksp";
+		default:
+			return hotkey;
+	}
+}
