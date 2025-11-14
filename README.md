@@ -55,10 +55,10 @@ operators will work with open buffer. you don't necessarily need to hit `enter` 
 - basic trig functions
 - basic exponent/root functions
 - basic keybinds
+- undo
 
 ### planned
 
-- undo
 - make it more prettier
 - keybind visibility
 - notation selection (float, fix, sci, eng)
