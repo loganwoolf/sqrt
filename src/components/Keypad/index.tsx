@@ -48,7 +48,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 				label: "x rt",
 				onClick: handle.nroot,
 			},
-			hotkey: HOTKEYS.SQRT,
+			hotkey: HOTKEYS.POWER,
 		},
 		{
 			mainAction: {
@@ -59,6 +59,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 				label: "asin",
 				onClick: handle.asin,
 			},
+			hotkey: HOTKEYS.SIN,
 		},
 		{
 			mainAction: {
@@ -69,6 +70,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 				label: "acos",
 				onClick: handle.acos,
 			},
+			hotkey: HOTKEYS.COS,
 		},
 		{
 			mainAction: {
@@ -79,6 +81,7 @@ export default function Keypad({ buffer, setBuffer }: KeypadProps) {
 				label: "atan",
 				onClick: handle.atan,
 			},
+			hotkey: HOTKEYS.TAN,
 		},
 	];
 

@@ -25,8 +25,14 @@ export const HOTKEYS = {
 
 	// Functional keys
 	EXPONENTIATE: "e",
-	SQRT: "s",
+	POWER: "w",
+	SQRT: "q",
 	NEGATE: "n",
+
+	// Trig keys
+	SIN: "i",
+	COS: "o",
+	TAN: "p",
 } as const;
 
 export type Hotkey = (typeof HOTKEYS)[keyof typeof HOTKEYS];
