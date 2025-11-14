@@ -27,7 +27,7 @@ a couple reasons
 
 #### even simpler arithmetic
 
-operators will work with open buffer. you don't necessarily need to hit `enter` before doing an operation.
+operators will work with open buffer (`>>`). you don't necessarily need to hit `enter` before doing an operation.
 
 ##### 5 + 7 (simplified)
 
@@ -58,7 +58,7 @@ operators will work with open buffer. you don't necessarily need to hit `enter` 
 - undo
 - keybind visibility
 
-### planned
+### someday
 
 - make it more prettier
 - notation selection (float, fix, sci, eng)
